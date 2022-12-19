@@ -2,17 +2,8 @@
 {
     internal class Sorting
     {
-        private static DataSets dataset = new DataSets();
-
-        public static void Test()
+        public static int[] Sort(int[] data)
         {
-            int[] data = dataset.GetData(50, 1000);
-            Thread.Sleep(1000);
-        }
-
-        public int[] Sort(int amount)
-        {
-            int[] data = dataset.GetData(amount, 1000);
             int[] eqTable = new int[data.Length];
             int[] output = new int[data.Length];
             for (int i = 0; i < eqTable.Length; i++)

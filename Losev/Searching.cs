@@ -8,7 +8,7 @@ namespace Losev
 {
     internal class Searching
     {
-        public static int find(int[] data, int target)
+        public static int Find(int[] data, int target)
         {          
             for (int i = 0; i < data.Length; i++)
             {
