@@ -34,6 +34,9 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.generateTsButton = new System.Windows.Forms.ToolStripButton();
             this.openTsButton = new System.Windows.Forms.ToolStripButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +44,7 @@
             // 
             this.SortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SortButton.Enabled = false;
-            this.SortButton.Location = new System.Drawing.Point(240, 364);
+            this.SortButton.Location = new System.Drawing.Point(240, 326);
             this.SortButton.Name = "SortButton";
             this.SortButton.Size = new System.Drawing.Size(87, 23);
             this.SortButton.TabIndex = 0;
@@ -53,7 +56,7 @@
             // 
             this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.searchButton.Enabled = false;
-            this.searchButton.Location = new System.Drawing.Point(149, 364);
+            this.searchButton.Location = new System.Drawing.Point(149, 326);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(85, 23);
             this.searchButton.TabIndex = 1;
@@ -90,18 +93,50 @@
             this.openTsButton.Name = "openTsButton";
             this.openTsButton.Size = new System.Drawing.Size(58, 22);
             this.openTsButton.Text = "Открыть";
+            this.openTsButton.Visible = false;
+            this.openTsButton.Click += new System.EventHandler(this.openTsButton_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 28);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(315, 230);
+            this.textBox1.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(12, 290);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(160, 23);
+            this.textBox2.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 272);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Позиция искомого числа";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 399);
+            this.ClientSize = new System.Drawing.Size(339, 361);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.SortButton);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MaximumSize = new System.Drawing.Size(355, 438);
-            this.MinimumSize = new System.Drawing.Size(355, 438);
+            this.MaximumSize = new System.Drawing.Size(355, 400);
+            this.MinimumSize = new System.Drawing.Size(355, 400);
             this.Name = "Form1";
             this.Text = "Form1";
             this.toolStrip1.ResumeLayout(false);
@@ -118,5 +153,8 @@
         private ToolStrip toolStrip1;
         private ToolStripButton generateTsButton;
         private ToolStripButton openTsButton;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private Label label1;
     }
 }

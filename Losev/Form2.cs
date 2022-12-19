@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Losev
+﻿namespace Losev
 {
     public partial class Form2 : Form
     {
+        public int Amount { get; set; }
+        public int? HighBorder { get; set; } = null;
+        public int? LowBorder { get; set; } = null;
         public Form2()
         {
             InitializeComponent();
-            radioButton1.Checked = true;         
+            radioButton1.Checked = true;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -48,18 +41,51 @@ namespace Losev
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int amount;
-            int highBorde;
-            int lowBorder;
-            if(!int.TryParse(textBox1.Text,out amount))
+            int amount = 0;
+            int highBorder = 0;
+            int lowBorder = 0;
+            Amount = 0;
+            LowBorder = null;
+            HighBorder = null;
+            if (!int.TryParse(textBox1.Text, out amount))
             {
-                WrongFormatError();  
+                WrongFormatError();
+                return;
             }
+            if (panel3.Enabled == true)
+            {
+                if (!int.TryParse(textBox2.Text, out highBorder))
+                {
+                    WrongFormatError();
+                    return;
+                }
+                HighBorder = highBorder;
+            }
+            if (panel4.Enabled == true)
+            {
+                if (!int.TryParse(textBox3.Text, out lowBorder))
+                {
+                    WrongFormatError();
+                    return;
+                }
+                if (lowBorder > highBorder)
+                    MessageBox.Show("Введены неверные границы", "Ошибка", MessageBoxButtons.OK);
+                LowBorder = lowBorder;
+            }
+            Amount = amount;
+            Form1 form = (Form1)this.Owner;
+            form.generateSet(Amount, LowBorder, HighBorder);
+            this.Close();
         }
 
         private void WrongFormatError()
         {
             MessageBox.Show("Введены неверные занчения", "Ошибка", MessageBoxButtons.OK);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
