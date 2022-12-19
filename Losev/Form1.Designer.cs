@@ -34,10 +34,10 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.generateTsButton = new System.Windows.Forms.ToolStripButton();
             this.openTsButton = new System.Windows.Forms.ToolStripButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,16 +97,6 @@
             this.openTsButton.Visible = false;
             this.openTsButton.Click += new System.EventHandler(this.openTsButton_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 28);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(315, 230);
-            this.textBox1.TabIndex = 3;
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(12, 290);
@@ -133,15 +123,25 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Время выполнения";
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(12, 28);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richTextBox1.Size = new System.Drawing.Size(315, 230);
+            this.richTextBox1.TabIndex = 7;
+            this.richTextBox1.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 361);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.SortButton);
@@ -164,9 +164,9 @@
         private ToolStrip toolStrip1;
         private ToolStripButton generateTsButton;
         private ToolStripButton openTsButton;
-        private TextBox textBox1;
         private TextBox textBox2;
         private Label label1;
         private Label label2;
+        private RichTextBox richTextBox1;
     }
 }

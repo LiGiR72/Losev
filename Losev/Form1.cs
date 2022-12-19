@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text;
 
 namespace Losev
 {
@@ -20,13 +21,10 @@ namespace Losev
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             data = Sorting.Sort(data);
-            stopwatch.Stop();
-            textBox1.Text = "";
-            //Write();
-            TimeSpan ts = stopwatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}.{1:00}",ts.Seconds,ts.Milliseconds);
-            
-            label2.Text = $"Время выполнения \n " + elapsedTime;
+            stopwatch.Stop();            
+            Write();
+            TimeSpan ts = stopwatch.Elapsed;         
+            label2.Text = $"Время выполнения \n {ts.Seconds} s, {ts.Milliseconds} ms";
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -76,7 +74,7 @@ namespace Losev
             }
             SortButton.Enabled = true;
             searchButton.Enabled = true;
-            //Write();
+            Write();
         }
 
 
@@ -86,10 +84,13 @@ namespace Losev
         }
         private void Write()
         {
+            richTextBox1.Text = "";
+            StringBuilder str = new StringBuilder();
             foreach (int entry in data)
             {
-                textBox1.Text += $"{entry}; ";
+                str.Append($"{entry}, ");
             }
+            richTextBox1.Text = str.ToString();
         }
     }
 }
