@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Losev
 {
     public partial class Form1 : Form
@@ -15,9 +17,16 @@ namespace Losev
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             data = Sorting.Sort(data);
+            stopwatch.Stop();
             textBox1.Text = "";
-            Write();
+            //Write();
+            TimeSpan ts = stopwatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}.{1:00}",ts.Seconds,ts.Milliseconds);
+            
+            label2.Text = $"Время выполнения \n " + elapsedTime;
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -25,15 +34,21 @@ namespace Losev
             Form3 form3 = new Form3();
             if (form3.ShowDialog(this) == DialogResult.OK)
             {
-               int temp = Searching.Find(data, form3.Temp);
-                if(temp == -1)
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                int temp = Searching.Find(data, form3.Temp);
+                stopwatch.Stop();
+                if (temp == -1)
                 {
                     textBox2.Text = "Такого числа нет";
+                    
                 }
                 else
                 {
-                    textBox2.Text = $"Позиция числа - {temp}";
+                    textBox2.Text = $"Позиция числа - {temp + 1}";
                 }
+                TimeSpan ts = stopwatch.Elapsed;
+                label2.Text = $"Время выполнения \n {ts.Seconds} s, {ts.Milliseconds} ms ";
             }
         }
 
@@ -61,7 +76,7 @@ namespace Losev
             }
             SortButton.Enabled = true;
             searchButton.Enabled = true;
-            Write();
+            //Write();
         }
 
 
