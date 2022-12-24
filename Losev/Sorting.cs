@@ -3,33 +3,88 @@
     internal class Sorting
     {
         public static int[] Sort(int[] data)
-        {
-            int[] eqTable = new int[data.Length];
-            int[] output = new int[data.Length];
-            for (int i = 0; i < eqTable.Length; i++)
+        {           
+            int l = 0;
+            int r = data.Length - 1;
+            int b = 1;
+            Stack<int[]> stack = new Stack<int[]>(10);
+            while (true)
             {
-                eqTable[i] = 0;
-            }
-            for (int i = data.Length - 1; i > 0; i--)
-            {
-                for (int j = i - 1; j >= 0; j--)
+                int[] temp;
+                if (l != r)
                 {
+                    int i = l;
+                    int j = r;
 
-                    if (data[i] > data[j])
+                    while (i <= j)
                     {
-                        eqTable[i]++;
+                        if (CheckBit(data[i], b, 10))
+                        {
+                            do
+                            {
+                                j--;
+                                if (i <= j)
+                                {
+                                    if (!CheckBit(data[j + 1], b, 10))
+                                    {
+                                        Swap(i, j + 1, ref data);
+                                        break;
+                                    }
+                                }
+
+                            } while (i <= j);
+                        }
+                        i++;
                     }
-                    else
+
+                    b++;
+                    if (!(b > 10))
                     {
-                        eqTable[j]++;
+                        if (j < l || j == r)
+                        {
+                            continue;
+                        }
+                        if (j == l)
+                        {
+                            l++;
+                            continue;
+                        }
+                        stack.Push(new int[] { r, b });
+                        r = j;
+                        continue;
                     }
+
                 }
+
+                if (stack.TryPop(out temp))
+                {
+                    l = r + 1;
+                    r = temp[0];
+                    b = temp[1];
+                    continue;
+                }
+                break;
+
+
             }
-            for (int i = 0; i < data.Length; i++)
-            {
-                output[eqTable[i]] = data[i];
-            }
-            return output;
+
+            return data;
         }
+
+        private static bool CheckBit(int input, int bit, int maxBit)
+        {
+            return (input & (int)Math.Pow(2, maxBit - bit)) == (int)Math.Pow(2, maxBit - bit);
+        }
+        private static void Swap(int a, int b, ref int[] data)
+        {
+            int temp;
+            temp = data[a];
+            data[a] = data[b];
+            data[b] = temp;
+
+        }
+
     }
+
+
 }
