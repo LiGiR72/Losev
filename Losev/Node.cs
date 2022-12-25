@@ -2,7 +2,7 @@
 {
     internal class BinaryTree
     {
-        public Node? Root { get; set; }
+              public Node? Root { get; set; }
         public BinaryTree()
         {
             Root = null;
@@ -19,13 +19,10 @@
                 Key = key;
                 LTree = null;
                 RTree = null;
-            }         
+            }
         }
-        public void Add(int key)
-        {
-            Root = AddUtility(key, Root);
-        }
-        public Node AddUtility(int key, Node node)
+        public void Add(int key) => Root = AddUtility(key, Root);
+        private Node AddUtility(int key, Node? node)
         {
             if (node == null)
             {
@@ -43,8 +40,41 @@
             return node;
 
         }
-        public void inorder() { inorderRec(Root); }
-        void inorderRec(Node root)
+        public Node Delete(int key) => DeletionUtility(Root, key);
+
+        private Node DeletionUtility(Node? root, int key)
+        {
+            if (root == null)
+            {
+                return root;
+            }
+            if (key < root.Key)
+                root.LTree = DeletionUtility(root.LTree, key);
+            else if (key > root.Key)
+                root.RTree = DeletionUtility(root.RTree, key);          
+            else
+            {              
+                if (root.LTree == null)
+                    return root.RTree;
+                else if (root.RTree == null)
+                    return root.LTree;
+                root.Key = minValue(root.RTree);
+                root.RTree = DeletionUtility(root.RTree, root.Key);
+            }
+            return root;
+        }
+        int minValue(Node? root)
+        {
+            int minv = root.Key;
+            while (root.LTree != null)
+            {
+                minv = root.LTree.Key;
+                root = root.LTree;
+            }
+            return minv;
+        }
+        public void inorder() => inorderRec(Root);
+        private void inorderRec(Node? root)
         {
             if (root != null)
             {
