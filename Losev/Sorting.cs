@@ -4,32 +4,21 @@
     {
         public static int[] Sort(int[] data)
         {
-            int[] eqTable = new int[data.Length];
-            int[] output = new int[data.Length];
-            for (int i = 0; i < eqTable.Length; i++)
+           int n = data.Length;
+           int l = n / 2 + 1;
+           int r = n;
+           int j;
+           int[] output = new int[n];
+            if (l > 1)
             {
-                eqTable[i] = 0;
+                l--;
             }
-            for (int i = data.Length - 1; i > 0; i--)
+            else
             {
-                for (int j = i - 1; j >= 0; j--)
-                {
 
-                    if (data[i] > data[j])
-                    {
-                        eqTable[i]++;
-                    }
-                    else
-                    {
-                        eqTable[j]++;
-                    }
-                }
             }
-            for (int i = 0; i < data.Length; i++)
-            {
-                output[eqTable[i]] = data[i];
-            }
-            return output;
+            j = l;
+            
         }
     }
 }
