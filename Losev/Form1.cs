@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace Losev
 {
@@ -21,33 +22,36 @@ namespace Losev
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             data = Sorting.Sort(data);
-            stopwatch.Stop();            
+            stopwatch.Stop();
             Write();
-            TimeSpan ts = stopwatch.Elapsed;         
+            TimeSpan ts = stopwatch.Elapsed;
             label2.Text = $"Время выполнения \n {ts.Seconds} s, {ts.Milliseconds} ms";
         }
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            if (form3.ShowDialog(this) == DialogResult.OK)
-            {
+                int input;
+                if (!int.TryParse(textBox1.Text, out input))
+                {
+                    MessageBox.Show("Введено неверное занчение", "Ошибка", MessageBoxButtons.OK);
+                    return;
+                }
+
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                int temp = Searching.Find(data, form3.Temp);
+                int temp = Searching.Find(data, input);
                 stopwatch.Stop();
                 if (temp == -1)
                 {
-                    textBox2.Text = "Такого числа нет";
-                    
+                    textBox2.Text = "Такого числа нет!";
+
                 }
                 else
                 {
                     textBox2.Text = $"Позиция числа - {temp + 1}";
                 }
                 TimeSpan ts = stopwatch.Elapsed;
-                label2.Text = $"Время выполнения \n {ts.Seconds} s, {ts.Milliseconds} ms ";
-            }
+            label2.Text = $"Время выполнения \n {ts.Seconds} s, {ts.Milliseconds} ms ";       
         }
 
         private void generateTsButton_Click(object sender, EventArgs e)
